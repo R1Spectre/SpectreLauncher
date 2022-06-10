@@ -352,6 +352,15 @@ int main(int argc, char* argv[])
 			return 1;
 		}
 
+		printf("[*] Loading launcher.dll\n");
+		swprintf_s(buffer, L"%s\\bin\\x64_retail\\launcher.dll", exePath);
+		hLauncherModule = LoadLibraryExW(buffer, 0, LOAD_WITH_ALTERED_SEARCH_PATH);
+		if (!hLauncherModule)
+		{
+			LibraryLoadError(GetLastError(), L"launcher.dll", buffer);
+			return 1;
+		}
+
 		bool loadSpectre = ShouldLoadSpectre(argc, argv);
 		if (loadSpectre)
 		{
@@ -361,15 +370,6 @@ int main(int argc, char* argv[])
 		}
 		else
 			printf("[*] Going to load the vanilla game\n");
-
-		printf("[*] Loading launcher.dll\n");
-		swprintf_s(buffer, L"%s\\bin\\x64_retail\\launcher.dll", exePath);
-		hLauncherModule = LoadLibraryExW(buffer, 0, LOAD_WITH_ALTERED_SEARCH_PATH);
-		if (!hLauncherModule)
-		{
-			LibraryLoadError(GetLastError(), L"launcher.dll", buffer);
-			return 1;
-		}
 	}
 
 	printf("[*] Launching the game...\n");
