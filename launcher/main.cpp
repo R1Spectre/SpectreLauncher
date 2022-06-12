@@ -335,13 +335,13 @@ int main(int argc, char* argv[])
 			file.write(defaultArgs.c_str(), defaultArgs.length());
 			file.close();
 		}
-		if (!fs::exists("r1s_startup_args_dedi.txt"))
+		/*if (!fs::exists("r1s_startup_args_dedi.txt"))
 		{
 			std::ofstream file("r1s_startup_args_dedi.txt");
 			std::string defaultArgs = "+setplaylist private_match";
 			file.write(defaultArgs.c_str(), defaultArgs.length());
 			file.close();
-		}
+		}*/
 
 		printf("[*] Loading tier0.dll\n");
 		swprintf_s(buffer, L"%s\\bin\\x64_retail\\tier0.dll", exePath);
